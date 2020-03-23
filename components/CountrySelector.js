@@ -6,15 +6,16 @@ export default function CountrySelector({ setUrl, setSelectedCountry }) {
   if (!countries) return <p>Loading...</p>;
   console.log(countries);
   function handleChange(e) {
-    const myCountry = Object.entries(countries.countries).find(
-      country => country[1] === e.target.value
-    )[0];
     if (e.target.value === 'all') {
       setUrl('https://covid19.mathdro.id/api/');
+      setSelectedCountry('WORLDWIDE');
     } else {
       setUrl(`https://covid19.mathdro.id/api/countries/${e.target.value}`);
+      const myCountry = Object.entries(countries.countries).find(
+        country => country[1] === e.target.value
+      )[0];
+      setSelectedCountry(myCountry);
     }
-    setSelectedCountry(myCountry);
   }
 
   return (

@@ -129,22 +129,21 @@ function CountrySelector({
   console.log(countries);
 
   function handleChange(e) {
-    const myCountry = Object.entries(countries.countries).find(country => country[1] === e.target.value)[0];
-
     if (e.target.value === 'all') {
       setUrl('https://covid19.mathdro.id/api/');
+      setSelectedCountry('WORLDWIDE');
     } else {
       setUrl(`https://covid19.mathdro.id/api/countries/${e.target.value}`);
+      const myCountry = Object.entries(countries.countries).find(country => country[1] === e.target.value)[0];
+      setSelectedCountry(myCountry);
     }
-
-    setSelectedCountry(myCountry);
   }
 
   return __jsx(Wrapper, {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 21,
+      lineNumber: 22,
       columnNumber: 5
     }
   }, __jsx("select", {
@@ -152,7 +151,7 @@ function CountrySelector({
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 22,
+      lineNumber: 23,
       columnNumber: 7
     }
   }, __jsx("option", {
@@ -160,7 +159,7 @@ function CountrySelector({
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 23,
+      lineNumber: 24,
       columnNumber: 9
     }
   }, "Worldwide"), Object.entries(countries.countries).map(([country, code]) => {
@@ -170,7 +169,7 @@ function CountrySelector({
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 26,
+        lineNumber: 27,
         columnNumber: 13
       }
     }, country);
