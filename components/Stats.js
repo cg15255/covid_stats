@@ -6,13 +6,18 @@ export default function Stats({ url, selected }) {
   const stats = useStats(url);
   if (!stats) return <p>Loading...</p>;
   console.log(stats);
-  let date = new Date(stats.lastUpdate);
+  let date;
+  if (stats.lastUpdate) {
+    date = new Date(stats.lastUpdate);
+  }
   return (
     <Wrapper>
       <h2>{selected} STATS</h2>
-      <small>
-        Last Updated: {date.toLocaleDateString()} {date.toLocaleTimeString()}
-      </small>
+      {date && (
+        <small>
+          Last Updated: {date.toLocaleDateString()} {date.toLocaleTimeString()}
+        </small>
+      )}
       <div className='statBlock'>
         <h3>Confirmed Cases:</h3>
         <span>

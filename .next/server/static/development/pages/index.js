@@ -327,48 +327,53 @@ function Stats({
     }
   }, "Loading...");
   console.log(stats);
-  let date = new Date(stats.lastUpdate);
+  let date;
+
+  if (stats.lastUpdate) {
+    date = new Date(stats.lastUpdate);
+  }
+
   return __jsx(Wrapper, {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 11,
+      lineNumber: 14,
       columnNumber: 5
     }
   }, __jsx("h2", {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 12,
+      lineNumber: 15,
       columnNumber: 7
     }
-  }, selected, " STATS"), __jsx("small", {
-    __self: this,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 13,
-      columnNumber: 7
-    }
-  }, "Last Updated: ", date.toLocaleDateString(), " ", date.toLocaleTimeString()), __jsx("div", {
-    className: "statBlock",
-    __self: this,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 16,
-      columnNumber: 7
-    }
-  }, __jsx("h3", {
+  }, selected, " STATS"), date && __jsx("small", {
     __self: this,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 17,
       columnNumber: 9
     }
+  }, "Last Updated: ", date.toLocaleDateString(), " ", date.toLocaleTimeString()), __jsx("div", {
+    className: "statBlock",
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 21,
+      columnNumber: 7
+    }
+  }, __jsx("h3", {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 22,
+      columnNumber: 9
+    }
   }, "Confirmed Cases:"), __jsx("span", {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 18,
+      lineNumber: 23,
       columnNumber: 9
     }
   }, stats.confirmed ? Object(_utils_withCommas__WEBPACK_IMPORTED_MODULE_3__["numberWithCommas"])(stats.confirmed.value) : 'N/A')), __jsx("div", {
@@ -376,21 +381,21 @@ function Stats({
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 22,
+      lineNumber: 27,
       columnNumber: 7
     }
   }, __jsx("h3", {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 23,
+      lineNumber: 28,
       columnNumber: 9
     }
   }, "Deaths:"), __jsx("span", {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 24,
+      lineNumber: 29,
       columnNumber: 9
     }
   }, stats.deaths ? Object(_utils_withCommas__WEBPACK_IMPORTED_MODULE_3__["numberWithCommas"])(stats.deaths.value) : 'N/A')), __jsx("div", {
@@ -398,21 +403,21 @@ function Stats({
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 28,
+      lineNumber: 33,
       columnNumber: 7
     }
   }, __jsx("h3", {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 29,
+      lineNumber: 34,
       columnNumber: 9
     }
   }, "Recovered:"), __jsx("span", {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 30,
+      lineNumber: 35,
       columnNumber: 9
     }
   }, stats.recovered ? Object(_utils_withCommas__WEBPACK_IMPORTED_MODULE_3__["numberWithCommas"])(stats.recovered.value) : 'N/A')));
