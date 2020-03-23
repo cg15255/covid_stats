@@ -1,0 +1,36 @@
+:root {
+  --lightColor: #f6f9fc;
+  --darkColor: #333;
+  --mainColor: #5533ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  background: var(--lightColor);
+  font-family: 'Montserrat', sans-serif;
+  color: var(--darkColor);
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+h1 {
+  font-size: 3rem;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+}
