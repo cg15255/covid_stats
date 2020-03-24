@@ -126,7 +126,6 @@ function CountrySelector({
       columnNumber: 26
     }
   }, "Loading...");
-  console.log(countries);
 
   function handleChange(e) {
     if (e.target.value === 'all') {
@@ -134,8 +133,8 @@ function CountrySelector({
       setSelectedCountry('WORLDWIDE');
     } else {
       setUrl(`https://covid19.mathdro.id/api/countries/${e.target.value}`);
-      const myCountry = Object.entries(countries.countries).find(country => country[1] === e.target.value)[0];
-      setSelectedCountry(myCountry);
+      const selected = countries.countries.find(country => country.iso2 === e.target.value);
+      setSelectedCountry(selected.name);
     }
   }
 
@@ -143,7 +142,7 @@ function CountrySelector({
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 22,
+      lineNumber: 21,
       columnNumber: 5
     }
   }, __jsx("select", {
@@ -151,7 +150,7 @@ function CountrySelector({
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 23,
+      lineNumber: 22,
       columnNumber: 7
     }
   }, __jsx("option", {
@@ -159,20 +158,20 @@ function CountrySelector({
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 24,
+      lineNumber: 23,
       columnNumber: 9
     }
-  }, "Worldwide"), Object.entries(countries.countries).map(([country, code]) => {
+  }, "Worldwide"), countries.countries.map(country => {
     return __jsx("option", {
-      value: code,
-      key: country,
+      value: country.iso2,
+      key: country.iso3,
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 27,
+        lineNumber: 26,
         columnNumber: 13
       }
-    }, country);
+    }, country.name);
   })));
 }
 const Wrapper = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div`
@@ -326,7 +325,6 @@ function Stats({
       columnNumber: 22
     }
   }, "Loading...");
-  console.log(stats);
   let date;
 
   if (stats.lastUpdate) {
@@ -337,21 +335,21 @@ function Stats({
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 14,
+      lineNumber: 13,
       columnNumber: 5
     }
   }, __jsx("h2", {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 15,
+      lineNumber: 14,
       columnNumber: 7
     }
   }, selected, " STATS"), date && __jsx("small", {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 17,
+      lineNumber: 16,
       columnNumber: 9
     }
   }, "Last Updated: ", date.toLocaleDateString(), " ", date.toLocaleTimeString()), __jsx("div", {
@@ -359,21 +357,21 @@ function Stats({
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 21,
+      lineNumber: 20,
       columnNumber: 7
     }
   }, __jsx("h3", {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 22,
+      lineNumber: 21,
       columnNumber: 9
     }
   }, "Confirmed Cases:"), __jsx("span", {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 23,
+      lineNumber: 22,
       columnNumber: 9
     }
   }, stats.confirmed ? Object(_utils_withCommas__WEBPACK_IMPORTED_MODULE_3__["numberWithCommas"])(stats.confirmed.value) : 'N/A')), __jsx("div", {
@@ -381,21 +379,21 @@ function Stats({
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 27,
+      lineNumber: 26,
       columnNumber: 7
     }
   }, __jsx("h3", {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 28,
+      lineNumber: 27,
       columnNumber: 9
     }
   }, "Deaths:"), __jsx("span", {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 29,
+      lineNumber: 28,
       columnNumber: 9
     }
   }, stats.deaths ? Object(_utils_withCommas__WEBPACK_IMPORTED_MODULE_3__["numberWithCommas"])(stats.deaths.value) : 'N/A')), __jsx("div", {
@@ -403,21 +401,21 @@ function Stats({
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 33,
+      lineNumber: 32,
       columnNumber: 7
     }
   }, __jsx("h3", {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 34,
+      lineNumber: 33,
       columnNumber: 9
     }
   }, "Recovered:"), __jsx("span", {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 35,
+      lineNumber: 34,
       columnNumber: 9
     }
   }, stats.recovered ? Object(_utils_withCommas__WEBPACK_IMPORTED_MODULE_3__["numberWithCommas"])(stats.recovered.value) : 'N/A')));
@@ -531,7 +529,6 @@ function useStats(url) {
   } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])();
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     async function fetchData() {
-      console.log('Fetching Data');
       const data = await fetch(url).then(res => res.json());
       setStats(data);
     }

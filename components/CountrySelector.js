@@ -4,17 +4,16 @@ import styled from 'styled-components';
 export default function CountrySelector({ setUrl, setSelectedCountry }) {
   const countries = useStats('https://covid19.mathdro.id/api/countries');
   if (!countries) return <p>Loading...</p>;
-  console.log(countries);
   function handleChange(e) {
     if (e.target.value === 'all') {
       setUrl('https://covid19.mathdro.id/api/');
       setSelectedCountry('WORLDWIDE');
     } else {
       setUrl(`https://covid19.mathdro.id/api/countries/${e.target.value}`);
-      const myCountry = Object.entries(countries.countries).find(
-        country => country[1] === e.target.value
-      )[0];
-      setSelectedCountry(myCountry);
+      const selected = countries.countries.find(
+        country => country.iso2 === e.target.value
+      );
+      setSelectedCountry(selected.name);
     }
   }
 
@@ -22,10 +21,10 @@ export default function CountrySelector({ setUrl, setSelectedCountry }) {
     <Wrapper>
       <select onChange={handleChange}>
         <option value='all'>Worldwide</option>
-        {Object.entries(countries.countries).map(([country, code]) => {
+        {countries.countries.map(country => {
           return (
-            <option value={code} key={country}>
-              {country}
+            <option value={country.iso2} key={country.iso3}>
+              {country.name}
             </option>
           );
         })}

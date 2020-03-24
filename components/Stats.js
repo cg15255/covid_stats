@@ -5,7 +5,6 @@ import { numberWithCommas } from '../utils/withCommas';
 export default function Stats({ url, selected }) {
   const stats = useStats(url);
   if (!stats) return <p>Loading...</p>;
-  console.log(stats);
   let date;
   if (stats.lastUpdate) {
     date = new Date(stats.lastUpdate);
